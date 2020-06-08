@@ -9,8 +9,18 @@
 ## JS Data Types Review Questions
 
 1. What are the basic data types in JavaScript? Fill in the table of types below with descriptions of the types and the operators that work on them.
+    #  Types          Description                                       Operators
+      # numbers       all forms of numerical value                      +, -, *, /, %(modular), **, =, >, <, >=, <=, comparison 
+      # strings       in quotes, text                                   +, -(?), "", 
+      # booleans      true/false                                        ternary, !!, !, ==, ===
+      # objects       contain data and properties, key/value tags       
+      # symbols       
+      # undefined     variable hasn't been defined yet
+      # null          nothing-ness
 
-2. `Object` is the basic data type that we use to build other, more specialized 'types' of data. Name some of the ways that `Object` is used in JavaScript (e.g. what other types are really `Object` underneath).
+2. `Object` is the basic data type that we use to build other, more specialized 'types' of data. Name some of the ways that `Object` is used in JavaScript (e.g. what other types are really `Object` underneath)
+  # store data, store properties, keys are unique but values can be duplicated 
+  # examples: array, dates, expressions, functions, maths, objects
 
 ## Exercise - Thinking in Types
 
@@ -20,11 +30,11 @@ For the following functions, fill in the table with the types of the inputs and 
 
 | Function                                         | types of inputs                  | type of output                |
 | ------------------------------------------------ | -------------------------------- | ----------------------------- |
-| `function addFive(number) { return number + 5}`  |                                  |                               |
-| `function sum(A, B) { return A + B }`            |                                  |                               |
-| `function concat(A, B) { return "" + A + B }`    |                                  |                               |
-| `document.querySelector`                         |                                  |                               |
-| `window.fetch`                                   |                                  |                               |
+| `function addFive(number) { return number + 5}`  | number                           | number                        |
+| `function sum(A, B) { return A + B }`            | two varibles (A, B)              | sum                           |
+| `function concat(A, B) { return "" + A + B }`    | two variables (A, B)             | concated as a string          |
+| `document.querySelector`                         | either an html tag, id, or className | node                      |
+| `window.fetch`                                   | API or URL                       | parsed JSON                   |
 
 ### "Shapes" of `Object`s
 
@@ -77,11 +87,11 @@ Fill in the table using the 'shape' shorthand
 
 | Function      | types of inputs                  | type of output           |
 | ------------- | -------------------------------- | ------------------------ |
-| `getName`     |                                  |                          |
-| `getAge`      |                                  |                          |
-| `makePerson`  |                                  |                          |
-| `birthday`    |                                  |                          |
-| `getDistance` |                                  |                          |
+| `getName`     | person: Object                   | name                     |
+| `getAge`      | person: Object                   | age                      |
+| `makePerson`  | name: string, age: number        | create a person          |
+| `birthday`    | person: Object                   | add year to person's age |
+| `getDistance` | two points: objects              | distance                 |
 
 ### Function Signatures
 
@@ -91,7 +101,7 @@ It's often conventional to write the 'signature' of a function to concisely capt
 // getDistance(pointA: Point, pointB: Point): number
 ```
 
-The `:` is used to indicate that the type is 'about' the preciding name. In `pointA: Point`, `pointA` is a `Point`.
+The `:` is used to indicate that the type is 'about' the preceding name. In `pointA: Point`, `pointA` is a `Point`.
 
 Reading this function signature out loud, you would say
 
@@ -99,13 +109,13 @@ Reading this function signature out loud, you would say
 
 For practice, add the function signature to the functions in the table.
 
-| Function      | types of inputs            | type of output             | function signature |
-| ------------- | -------------------------- | -------------------------- | ------------------ |
-| `getName`     |                            |                            |                    |
-| `getAge`      |                            |                            |                    |
-| `makePerson`  |                            |                            |                    |
-| `birthday`    |                            |                            |                    |
-| `getDistance` |                            |                            |                    |
+| Function      | types of inputs            | type of output             | function signature                                 |
+| ------------- | -------------------------- | -------------------------- | -------------------------------------------------- |
+| `getName`     |                            |                            | getName(object: person): string                    |
+| `getAge`      |                            |                            | getAge(object: person): number                     |
+| `makePerson`  |                            |                            | makePerson(name: string, age: string): object      |
+| `birthday`    |                            |                            | birthday(object: person): object                   |
+| `getDistance` |                            |                            | getDistance(pointA: Point, pointB: Point): number  |
 
 ### Operators as 'Functions'
 
@@ -116,13 +126,13 @@ For the following operators, fill in the types of the inputs and outputs. Follow
 | Operator   | types of inputs                  | type of output                | function signature                     |
 | ---------- | -------------------------------- | ----------------------------- | -------------------------------------- |
 | \*         | number, number                   | number                        | multiply(a: number, b: number): number |
-| + (string) |                                  |                               |                                        |
-| + (number) |                                  |                               |                                        |
-| -          |                                  |                               |                                        |
-| ^          |                                  |                               |                                        |
-| \*\*       |                                  |                               |                                        |
-| \|\|       |                                  |                               |                                        |
-| &&         |                                  |                               |                                        |
+| + (string) | string, string                   | string                        | concat(a:string, b:string): string     |
+| + (number) | number, number                   | number                        | sum(a:number, b:number): number        |
+| -          | number, number                   | number                        | subtract(a:number, b:number): number   |
+| ^          | XOR                              | number                        |                                        |
+| \*\*       | number, number                   | number                        | exponent(a:number, b:number): number   |
+| \|\|       | condition A, condition B         | boolean                       | boolean(a:condition, b:condition): T/F |
+| &&         | condition A, condition B         | boolean                       | boolean(a:condition, b:condition): T/F |
 
 ### Functions that take in functions as arguments
 
@@ -135,8 +145,8 @@ Fill in the rest of the table.
 | Function                       | types of inputs                  | type of output                | function signature                                      |
 | ------------------------------ | -------------------------------- | ----------------------------- | ------------------------------------------------------- |
 | `EventTarget.addEventListener` | string, handler(e: Event): void  | void                          | addEventListener(type: string, handler: function): void |
-| `window.setTimeout`            |                                  |                               |                                                        |
-| `Array.prototype.map`          |                                  |                               |                                                        |
-| `Array.prototype.find`         |                                  |                               |                                                         |
-| `Array.prototype.filter`       |                                  |                               |                                                         |
-| `Array.prototype.reduce`       |                                  |                               |                                                         |
+| `window.setTimeout`            | callback function, milliseconds  | void                          | setTimeout(callback: function, number): void            |
+| `Array.prototype.map`          | array                            | new array                     | .map(array): new array                                  |
+| `Array.prototype.find`         | array, value                     | value or null                 | .find(array, value): value or null                      |
+| `Array.prototype.filter`       | array, value                     | new array                     | .filter(array, value): new array                        |
+| `Array.prototype.reduce`       | array, starting value            | value                         | .reduce(array, starting value): value                   |
